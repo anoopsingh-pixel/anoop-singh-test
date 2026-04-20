@@ -2,60 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PXXB5BMH');</script>
-<!-- End Google Tag Manager -->
-  <title>My Netlify Website</title>
-  <link rel="stylesheet" href="style.css">
-<script id='_webengage_script_tag' type='text/javascript'>
-                                    var webengage;!function(w,e,b,n,g){function o(e,t){e[t[t.length-1]]=function(){r.__queue.push([t.join("."),
-                                    arguments])}}var i,s,r=w[b],z=" ",l="init options track screen onReady".split(z),a="webPersonalization feedback survey notification notificationInbox".split(z),c="options render clear abort".split(z),p="Prepare Render Open Close Submit Complete View Click".split(z),u="identify login logout setAttribute".split(z);if(!r||!r.__v){for(w[b]=r={__queue:[],__v:"6.0",user:{}},i=0;i < l.length;i++)o(r,[l[i]]);for(i=0;i < a.length;i++){for(r[a[i]]={},s=0;s < c.length;s++)o(r[a[i]],[a[i],c[s]]);for(s=0;s < p.length;s++)o(r[a[i]],[a[i],"on"+p[s]])}for(i=0;i < u.length;i++)o(r.user,["user",u[i]]);setTimeout(function(){var f=e.createElement("script"),d=e.getElementById("_webengage_script_tag");f.type="text/javascript",f.async=!0,f.src=("https:"==e.location.protocol?"https://ssl.widgets.webengage.com":"http://cdn.widgets.webengage.com")+"/js/webengage-min-v-6.0.js",d.parentNode.insertBefore(f,d)})}}(window,document,"webengage");webengage.init("~15ba1d029");
-                                    </script>
+  <title>WebEngage Dummy Website</title>
+
+  <!-- WebEngage SDK -->
+  <script id="_webengage_script_tag" type="text/javascript">
+    var webengage;
+    !function(w,e,b,n,g){
+      function o(e,t){
+        e[t[t.length-1]] = function(){
+          r.__queue.push([t.join("."), arguments])
+        }
+      }
+      var i,s,r=w[b],z=" ",
+      l="init options track screen onReady".split(z),
+      a="webPersonalization feedback survey notification notificationInbox".split(z),
+      c="options render clear abort".split(z),
+      p="Prepare Render Open Close Submit Complete View Click".split(z),
+      u="identify login logout setAttribute".split(z);
+
+      if(!r || !r.__v){
+        for(w[b]=r={__queue:[],__v:"6.0",user:{}}, i=0; i<l.length; i++) o(r,[l[i]]);
+        for(i=0; i<a.length; i++){
+          for(r[a[i]]={}, s=0; s<c.length; s++) o(r[a[i]],[a[i],c[s]]);
+          for(s=0; s<p.length; s++) o(r[a[i]],[a[i],"on"+p[s]])
+        }
+        for(i=0; i<u.length; i++) o(r.user,["user",u[i]]);
+        setTimeout(function(){
+          var f=e.createElement("script"),
+              d=e.getElementById("_webengage_script_tag");
+          f.type="text/javascript";
+          f.async=true;
+          f.src=(e.location.protocol=="https:"?"https://ssl.widgets.webengage.com":"http://cdn.widgets.webengage.com")
+                +"/js/webengage-min-v-6.0.js";
+          d.parentNode.insertBefore(f,d);
+        })
+      }
+    }(window,document,"webengage");
+
+    webengage.init("~15ba1d03b");
+  </script>
 </head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXXB5BMH"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  <header>
-    <h1>Welcome to My Website!</h1>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>This is a simple static website hosted on Netlify.</p>
-  </section>
+<body style="font-family: Arial; padding: 30px;">
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <form id="contactForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      
-      <label for="message">Message:</label>
-      <textarea id="message" name="message" required></textarea>
-      
-      <button type="submit">Send</button>
-    </form>
-    <p id="formMessage"></p>
-  </section>
+  <h1>WebEngage Dummy Website</h1>
 
-  <footer>
-    <p>© 2026 My Netlify Website</p>
-  </footer>
+  <button onclick="loginUser()">Login User</button>
+  <button onclick="addToCart()">Add To Cart</button>
+  <button onclick="enablePush()">Enable Notifications</button>
 
-  <script src="script.js"></script>
+  <script>
+    function loginUser() {
+      if (window.webengage && webengage.user) {
+        webengage.user.login("user_123");
+        alert("User logged in");
+      } else {
+        alert("WebEngage not ready. Please refresh.");
+      }
+    }
+
+    function addToCart() {
+      webengage.track("Added To Cart", {
+        "Product ID": "AXK1337",
+        "Price": 39.80
+      });
+      alert("Event sent");
+    }
+
+    function enablePush() {
+      webengage.webpush.prompt();
+    }
+  </script>
+
 </body>
 </html>
